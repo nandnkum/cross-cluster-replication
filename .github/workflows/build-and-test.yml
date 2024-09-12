@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Checkout CCR
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup Java ${{ matrix.java }}
         uses: actions/setup-java@v1
         with:
@@ -44,7 +44,7 @@ jobs:
           chown -R 1000:1000 `pwd`
           su `id -un 1000` -c 'whoami && java -version && ./gradlew --refresh-dependencies clean release -D"build.snapshot=true"'
       - name: Upload failed logs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: logs
